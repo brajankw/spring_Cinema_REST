@@ -33,8 +33,7 @@ public class Seat {
     private Movie movie;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "seat")
     private Ticket ticket;
 
 }

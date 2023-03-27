@@ -3,6 +3,7 @@ package com.example.spring_ticket_booking.controller;
 import com.example.spring_ticket_booking.entity.Movie;
 import com.example.spring_ticket_booking.entity.Seat;
 import com.example.spring_ticket_booking.service.MovieService;
+import com.example.spring_ticket_booking.service.SeatService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class SeatController {
 
     private MovieService movieService;
+    private SeatService seatService;
 
     @GetMapping("/seats")
     public Seat checkSeat(@RequestBody Map<String, Integer> request) {
@@ -28,5 +30,10 @@ public class SeatController {
             if (theSeat.getColumn() == request.get("column") && theSeat.getRow() == request.get("row")) return theSeat;
         }
         throw new RuntimeException("Seat don't exist!");
+    }
+
+    @GetMapping("/stats")
+    public Object cinemaStats() {
+        return seatService.cinemaStats();
     }
 }

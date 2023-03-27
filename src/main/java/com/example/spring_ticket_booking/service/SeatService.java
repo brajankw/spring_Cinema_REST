@@ -14,4 +14,7 @@ public interface SeatService {
 
     void deleteById(int theId);
 
+    Seat findSeat(Map<String, Integer> request);
+
+    Object cinemaStats();
 }

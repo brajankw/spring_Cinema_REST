@@ -25,7 +25,8 @@ public class Ticket {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @OneToOne(mappedBy = "ticket")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private Seat seat;
 
     @Column(name="purchase_date")

@@ -33,14 +33,7 @@ public class MovieController {
 
     @GetMapping("/movies/{movieId}")
     public Object movieDetails(@PathVariable int movieId) {
-        Movie theMovie = movieService.findById(movieId);
-        Set<Seat> availableSeats = new HashSet<>();
-        for (Seat seat: theMovie.getSeats()) {
-            if (!seat.isSold()) availableSeats.add(seat);
-        }
-        @JsonPropertyOrder({"movie", "available_seats"})
-        record MovieDetails(Movie movie, @JsonProperty("available_seats") Set<Seat> availableSeats) {}
-        return new MovieDetails(theMovie, availableSeats);
+        return movieService.movieDetails(movieId);
     }
 
     @PostMapping("/movies")
